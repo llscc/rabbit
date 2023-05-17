@@ -1,5 +1,5 @@
 <template>
-    <LayoutFixed />s
+    <LayoutFixed />
     <LayoutNav />
     <LayoutHeader />
     <RouterView />

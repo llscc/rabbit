@@ -1,7 +1,7 @@
 <script setup>
 import { useCategoryStore } from '@/stores/category';
 const categoryStore = useCategoryStore();
-console.log(categoryStore.categoryList);
+//console.log(categoryStore.categoryList);
 </script>
 
 <template>
@@ -118,7 +118,7 @@ console.log(categoryStore.categoryList);
               .info {
                 padding-left: 10px;
                 line-height: 24px;
-                overflow: hidden;
+                overflow: hidden; // 文字超出隐藏
 
                 .name {
                   font-size: 16px;

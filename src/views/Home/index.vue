@@ -15,7 +15,7 @@ import HomePanel from './components/HomePanel.vue'
   <HomeNew />
   <HomeHot />
   <homeProduct />
-  <!-- 测试面板组件 -->
+  <!-- 测试面板组件
   <HomePanel title="测试标题" subTitle="测试副标题">
     <div class="test">
       测试内容
@@ -25,7 +25,7 @@ import HomePanel from './components/HomePanel.vue'
     <div class="test">
       测试内容
     </div>
-  </HomePanel>
+  </HomePanel> -->
 </template>
 
 <style lang="scss" scoped>

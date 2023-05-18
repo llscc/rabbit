@@ -1,5 +1,7 @@
 // axios基础封装
 import axios from 'axios'
+import 'element-plus/es/components/message/style/css'
+import {ElMessage} from 'element-plus'
 
 const httpInstance = axios.create({
     baseURL: 'http://pcapi-xiaotuxian-front-devtest.itheima.net',
@@ -19,6 +21,11 @@ httpInstance.interceptors.response.use(res => {
     // console.log(res);
     return res.data
 }, err => {
+    // 错误提示
+    ElMessage({
+        type:'warning',
+        message:err.response.data.message
+    })
     return Promise.reject(err)
 })
 

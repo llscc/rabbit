@@ -2,7 +2,7 @@
     defineProps({
         goods:{
             type:Object,
-            defalut:()=>{}
+            defalut:()=>{} // 这里必须是一个函数，否则会报错,因为这里是一个对象，而对象是引用类型，如果不是函数，那么所有的组件都会共享这个对象
         }
     })
 </script>

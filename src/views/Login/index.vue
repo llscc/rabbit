@@ -12,7 +12,7 @@ const form = ref({
 const rules = {
     account: [
         { required: true, message: '请输入账号', trigger: 'blur' },
-        { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+        { min: 3, max: 15, message: '长度在 3 到 15 个字符', trigger: 'blur' }
     ],
     password: [
         { required: true, message: '请输入密码', trigger: 'blur' },
@@ -30,6 +30,18 @@ const rules = {
             },
         }
     ]
+}
+
+// 3.获取form实例做统一校验
+const formRef = ref(null)
+const doLogin = () => {
+    formRef.value.validate(valid => {
+        if (valid) {
+            console.log('校验通过')
+        } else {
+            console.log('校验失败')
+        }
+    })
 }
 </script>
 
@@ -55,7 +67,7 @@ const rules = {
                 </nav>
                 <div class="account-box">
                     <div class="form">
-                        <el-form :model="form" :rules="rules" label-position="right" label-width="60px" status-icon>
+                        <el-form ref="formRef" :model="form" :rules="rules" label-position="right" label-width="60px" status-icon>
                             <el-form-item prop="account" label="账户">
                                 <el-input v-model="form.account" />
                             </el-form-item>
@@ -67,7 +79,7 @@ const rules = {
                                     我已同意隐私条款和服务条款
                                 </el-checkbox>
                             </el-form-item>
-                            <el-button size="large" class="subBtn">点击登录</el-button>
+                            <el-button @click="doLogin" size="large" class="subBtn">点击登录</el-button>
                         </el-form>
                     </div>
                 </div>

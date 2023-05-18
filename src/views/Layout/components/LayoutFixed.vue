@@ -35,7 +35,7 @@ const categoryStore = useCategoryStore();
 <style scoped lang='scss'>
 .app-header-sticky {
   width: 100%;
-  height: 80px;
+  height: 70px;
   position: fixed;
   left: 0;
   top: 0;
@@ -55,15 +55,15 @@ const categoryStore = useCategoryStore();
   }
 
   .container {
-    display: flex;
-    align-items: center;
+    display: flex; // 水平排列
+    align-items: center; // 垂直居中
   }
 
   .logo {
     width: 200px;
-    height: 80px;
+    height: 70px;
     background: url("@/assets/images/logo.png") no-repeat right 2px;
-    background-size: 160px auto;
+    background-size: 160px auto; // 160px是图片的宽度
   }
 
   .right {

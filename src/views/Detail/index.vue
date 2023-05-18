@@ -1,7 +1,10 @@
 <script setup>
-import {getDetail} from '@/apis/detail'
-import {ref, onMounted} from 'vue'
-import {useRoute} from 'vue-router'
+import DetailHot from './components/DetailHot.vue'
+import { getDetail } from '@/apis/detail'
+import { ref, onMounted } from 'vue'
+import { useRoute } from 'vue-router'
+
+
 
 const goods = ref({})
 const route = useRoute()
@@ -26,9 +29,9 @@ onMounted(() => {
             1. 可选链的语法?. 
             2. v-if手动控制渲染时机 保证只有数据存在才渲染
            -->
-          <el-breadcrumb-item :to="{ path: `/category/${goods.categories[1].id}` }">{{goods.categories[1].name}}
+          <el-breadcrumb-item :to="{ path: `/category/${goods.categories[1].id}` }">{{ goods.categories[1].name }}
           </el-breadcrumb-item>
-          <el-breadcrumb-item :to="{ path: `/category/${goods.categories[0].id}` }">{{goods.categories[0].name}}
+          <el-breadcrumb-item :to="{ path: `/category/${goods.categories[0].id}` }">{{ goods.categories[0].name }}
           </el-breadcrumb-item>
           <el-breadcrumb-item>抓绒保暖，毛毛虫子儿童运动鞋</el-breadcrumb-item>
         </el-breadcrumb>
@@ -44,33 +47,33 @@ onMounted(() => {
               <ul class="goods-sales">
                 <li>
                   <p>销量人气</p>
-                  <p> {{goods.salesCount}}+ </p>
+                  <p> {{ goods.salesCount }}+ </p>
                   <p><i class="iconfont icon-task-filling"></i>销量人气</p>
                 </li>
                 <li>
                   <p>商品评价</p>
-                  <p>{{goods.commentCount}}+</p>
+                  <p>{{ goods.commentCount }}+</p>
                   <p><i class="iconfont icon-comment-filling"></i>查看评价</p>
                 </li>
                 <li>
                   <p>收藏人气</p>
-                  <p>{{goods.collectCount}}+</p>
+                  <p>{{ goods.collectCount }}+</p>
                   <p><i class="iconfont icon-favorite-filling"></i>收藏商品</p>
                 </li>
                 <li>
                   <p>品牌信息</p>
-                  <p>{{goods.brand.name}}+</p>
+                  <p>{{ goods.brand.name }}+</p>
                   <p><i class="iconfont icon-dynamic-filling"></i>品牌主页</p>
                 </li>
               </ul>
             </div>
             <div class="spec">
               <!-- 商品信息区 -->
-              <p class="g-name"> {{goods.name}} </p>
+              <p class="g-name"> {{ goods.name }} </p>
               <p class="g-desc">{{ goods.desc }} </p>
               <p class="g-price">
-                <span>{{goods.oldPrice}}</span>
-                <span> {{goods.price}}</span>
+                <span>{{ goods.oldPrice }}</span>
+                <span> {{ goods.price }}</span>
               </p>
               <div class="g-service">
                 <dl>
@@ -111,8 +114,8 @@ onMounted(() => {
                   <!-- 属性 -->
                   <ul class="attrs">
                     <li v-for="item in goods.details.properties" :key="item.value">
-                      <span class="dt">{{item.name}}</span>
-                      <span class="dd">{{item.value}}</span>
+                      <span class="dt">{{ item.name }}</span>
+                      <span class="dd">{{ item.value }}</span>
                     </li>
                   </ul>
                   <!-- 图片 -->
@@ -122,7 +125,10 @@ onMounted(() => {
             </div>
             <!-- 24热榜+专题推荐 -->
             <div class="goods-aside">
-
+              <!-- 24 hour -->
+              <DetailHot />
+              <!-- week hot -->
+              <DetailHot />
             </div>
           </div>
         </div>

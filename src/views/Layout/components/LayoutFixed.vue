@@ -36,10 +36,10 @@ const categoryStore = useCategoryStore();
 .app-header-sticky {
   width: 100%;
   height: 70px;
-  position: fixed;
-  left: 0;
-  top: 0;
-  z-index: 999;
+  position: fixed; // 固定定位
+  left: 0; // 距离左边0
+  top: 0; // 距离上边0
+  z-index: 999; // 层级,越大越高,越显示在上面
   background-color: #fff;
   border-bottom: 1px solid #e4e4e4;
   // 此处为关键样式!!!

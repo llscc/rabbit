@@ -7,6 +7,8 @@ export const useCartStore = defineStore('cart', () => {
     const cartList = ref([])
     // 2.定义actions
     const addCart = (goods) => {
+
+
         //添加购物车操作
         // 已添加过的商品数量+1
         // 没添加过：直接push
@@ -19,9 +21,18 @@ export const useCartStore = defineStore('cart', () => {
             cartList.value.push(goods)
         }
     }
+
+    // 删除购物车
+    const delCart = (skuId) => {
+        // 思路：1.找到删除项的下标值，splice
+        const idx = cartList.value.findIndex(item => item.skuId === skuId)
+        cartList.value.splice(idx, 1)
+        // 2.通过filter过滤
+    }
     return {
         cartList,
-        addCart
+        addCart,
+        delCart
     }
 },
     {

@@ -1,8 +1,10 @@
 // axios基础封装
 import axios from 'axios'
 import 'element-plus/es/components/message/style/css'
-import {ElMessage} from 'element-plus'
-import {useUserStore} from '@/stores/user'
+import { ElMessage } from 'element-plus'
+import { useUserStore } from '@/stores/user'
+//import { useRouter } from 'vue-router'
+import router from '@/router'
 
 const httpInstance = axios.create({
     baseURL: 'http://pcapi-xiaotuxian-front-devtest.itheima.net',
@@ -26,14 +28,25 @@ httpInstance.interceptors.request.use(config => {
 
 // 响应拦截器
 httpInstance.interceptors.response.use(res => {
+
     // console.log(res);
     return res.data
 }, err => {
+    const userStore = useUserStore()
+    //const router = useRouter()
     // 错误提示
     ElMessage({
-        type:'warning',
-        message:err.response.data.message
+        type: 'warning',
+        message: err.response.data.message
     })
+
+    // 401token失效处理
+    // 1. 清除本地用户数据
+    // 2. 跳转到登录页
+    if (err.response.status === 401) {
+        userStore.clearUserInfo()
+        router.push('/login')
+    }
     return Promise.reject(err)
 })
 

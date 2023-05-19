@@ -42,6 +42,10 @@ const router = createRouter({
           component: CartList,
         }
       ]
+    },
+    {
+      path: "/login",
+      component: Login
     }
   ],
 

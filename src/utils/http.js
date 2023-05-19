@@ -2,7 +2,7 @@
 import axios from 'axios'
 import 'element-plus/es/components/message/style/css'
 import { ElMessage } from 'element-plus'
-import { useUserStore } from '@/stores/user'
+import { useUserStore } from '@/stores/userStore'
 //import { useRouter } from 'vue-router'
 import router from '@/router'
 

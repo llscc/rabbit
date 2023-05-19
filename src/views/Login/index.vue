@@ -1,10 +1,11 @@
 <script setup>
-import {loginAPI} from '@/apis/user.js'
 import 'element-plus/theme-chalk/el-message.css'
 import {ElMessage} from 'element-plus'
 import { useRouter } from 'vue-router';
 // 表单校验 （账号名+密码）
 import { ref } from 'vue'
+import { useUserStore } from '@/stores/user';
+const userStore = useUserStore()
 // 1.准备表单对象
 const form = ref({
     account: '',
@@ -44,8 +45,9 @@ const doLogin = () => {
     formRef.value.validate(async (valid) => {
         if (valid) {
             //console.log('校验通过')
-            const res = await loginAPI({account, password})
-            console.log(res)
+            // const res = await loginAPI({account, password})
+            await userStore.getUserInfo({ account, password })
+            //console.log(res)
             // 1.提示登录成功
             ElMessage({
                 type: 'success',

@@ -8,7 +8,7 @@
       <div class="user-manage">
         <h4>我的账户</h4>
         <div class="links">
-          <RouterLink to="/member/user">个人中心</RouterLink>
+          <RouterLink to="/member">个人中心</RouterLink>
         </div>
         <h4>交易管理</h4>
         <div class="links">
@@ -18,7 +18,7 @@
     </div>
     <div class="article">
       <!-- 三级路由的挂载点 -->
-      <!-- <RouterView /> -->
+      <RouterView /> 
     </div>
   </div>
 </template>

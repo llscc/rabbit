@@ -1,5 +1,5 @@
 <script setup>
-import {getCheckoutAPI,createOrderAPI} from '@/apis/checkout'
+import {getCheckoutAPI,createOrderAPI, addAddressAPI} from '@/apis/checkout'
 import {ref, onMounted} from 'vue'
 import { useRouter } from 'vue-router';
 import { useCartStore } from '@/stores/cartStore';
@@ -35,6 +35,27 @@ const confirm = () => {
     curAddress.value = activateAddress.value
     showDialog.value = false
     activateAddress.value = {}
+}
+
+// 手动添加一个地址
+// const addFlag = ref(false)
+const addressExample = ref({
+  receiver: "老李",
+    contact: "13900002020",
+    provinceCode: "210000",
+    cityCode: "210200",
+    countyCode: "210202",
+    address: "xxx街xxx路",
+    postalCode: "111006",
+    addressTags: "家里",
+    isDefault: 0,
+    fullLocation: "辽宁省 大连市 中山区"
+})
+const addAddress = async () => {
+    const res = await addAddressAPI(addressExample.value)
+    if(res.code === "1"){
+        console.log('添加成功',res.result)
+    }
 }
 
 //创建订单
@@ -83,7 +104,7 @@ const createOrder = async()=>{
             </div>
             <div class="action">
               <el-button size="large" @click="showDialog = true">切换地址</el-button>
-              <el-button size="large" @click="addFlag = true">添加地址</el-button>
+              <el-button size="large" @click="addAddress">添加地址</el-button>
             </div>
           </div>
         </div>
@@ -163,7 +184,7 @@ const createOrder = async()=>{
     </div>
   </div>
   <!-- 切换地址 -->
-  <el-dialog v-model="showDialog" title="切换收货地址" width="30%" center>
+  <el-dialog v-model="showDialog" title="切换收货地址" width="40%" center>
   <div class="addressWrapper">
     <div class="text item" :class="{active:activateAddress.id===item.id}" @click="switchAddress(item)" v-for="item in checkInfo.userAddresses"  :key="item.id">
       <ul>
@@ -368,7 +389,7 @@ const createOrder = async()=>{
 
 .addressWrapper {
   max-height: 500px;
-  overflow-y: auto;
+  overflow-y: auto; //滚动条,超出高度出现滚动条
 }
 
 .text {

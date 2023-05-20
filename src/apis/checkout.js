@@ -15,3 +15,12 @@ export const createOrderAPI = (data) => {
         data
     })
 }
+
+// 添加收货地址
+export const addAddressAPI = (data) => {
+    return request({
+        url: '/member/address',
+        method: 'POST',
+        data
+    })
+}
